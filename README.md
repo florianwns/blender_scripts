@@ -31,3 +31,8 @@ Run a script directly with Blender:
 ### Notes
 - Scripts assume Blender is installed in `/Applications/Blender.app` on macOS.
 - Keep scripts small and focused for easier testing inside Blender.
+
+
+### Addons
+
+Addonds are installed with symbolic link at `/Users/florian/Library/Application Support/Blender/5.0/extensions/vscode_development`
