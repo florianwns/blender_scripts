@@ -35,4 +35,4 @@ Run a script directly with Blender:
 
 ### Addons
 
-Addonds are installed with symbolic link at `/Users/florian/Library/Application Support/Blender/5.0/extensions/vscode_development`
+Addons are installed using a symbolic link to `/Users/florian/Library/Application Support/Blender/5.0/extensions/vscode_development`
