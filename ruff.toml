@@ -1,0 +1,59 @@
+# Ruff configuration for Blender addon
+# Place this file at the root of your addon
+
+# Maximum line length
+line-length = 88
+
+# Target Python version (Blender 5.x uses Python 3.11)
+target-version = "py311"
+
+# Files to exclude
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "*.egg-info",
+]
+
+[lint]
+# Enabled rules
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort (imports)
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+    "RET", # flake8-return
+]
+
+# Ignored rules (Blender-specific)
+ignore = [
+    "E501",   # Line too long (handled by line-length)
+    "N802",   # Function name should be lowercase (Blender uses different conventions)
+    "N803",   # Argument name should be lowercase (for bl_idname, bl_label, etc.)
+    "N806",   # Variable in function should be lowercase
+    "B008",   # Function call in default argument (common with bpy.props)
+    "SIM108", # Use ternary operator (sometimes less readable)
+]
+
+[lint.per-file-ignores]
+# Ignore certain rules in __init__.py
+"__init__.py" = ["F401", "F403"]  # Unused imports and wildcard imports
+
+[lint.isort]
+# isort configuration for organizing imports
+known-first-party = ["bpy", "bl_ui", "bgl", "gpu", "mathutils"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
+[format]
+# Formatter configuration
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
