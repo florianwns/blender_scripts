@@ -1,0 +1,16 @@
+import math
+
+import bpy
+
+obj = bpy.data.objects["Cube"]
+n = 80
+r = 10
+x = 0
+for frame_number in range(500):
+    bpy.context.scene.frame_set(frame_number)
+    angle = frame_number / n * 4 * math.pi
+    z = r * math.cos(angle)
+    y = r * math.sin(angle)
+    obj.location = (x, y, z)
+    x += 0.4
+    obj.keyframe_insert(data_path="location")
