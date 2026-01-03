@@ -25,9 +25,10 @@ def get_bottom(obj):
     return min((matrix @ v.co).z for v in obj.data.vertices)
 
 
-# Clear the scene
-bpy.ops.object.select_all(action="SELECT")
-bpy.ops.object.delete()
+# Clear all objects from the current collection except cameras and lights
+for obj in bpy.context.collection.objects:
+    if obj.type not in {"CAMERA", "LIGHT"}:
+        bpy.data.objects.remove(obj, do_unlink=True)
 
 # Define names in variables
 cube_name = "Le Pavé Suprême"
