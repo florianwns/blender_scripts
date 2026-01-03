@@ -1,3 +1,11 @@
+"""
+This script clears the scene and creates a vertical stack of objects: a cube,
+a cylinder, and Suzanne (the monkey).
+It uses vertex-based calculations to ensure perfect stacking regardless of
+rotation, applies funny names, adds Subdivision Surface modifiers,
+and scales the result.
+"""
+
 import bpy
 
 
