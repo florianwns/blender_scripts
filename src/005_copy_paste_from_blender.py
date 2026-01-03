@@ -21,20 +21,28 @@ def get_bottom(obj):
 bpy.ops.object.select_all(action="SELECT")
 bpy.ops.object.delete()
 
+# Define names in variables
+cube_name = "Le Pavé Suprême"
+cylinder_name = "Le Tuyau Magique"
+monkey_name = "Suzanne la Cascadeuse"
+
 # Create the cube
 bpy.ops.mesh.primitive_cube_add(location=(0, 0, 1))
-cube = bpy.context.active_object
+cube = bpy.context.view_layer.objects.active
+cube.name = cube_name
 
 # Position the cylinder on top of the cube
 cylinder_height = 2.0
 cylinder_z = get_top(cube) + (cylinder_height / 2)
 bpy.ops.mesh.primitive_cylinder_add(depth=cylinder_height, location=(0, 0, cylinder_z))
-cylinder = bpy.context.active_object
+cylinder = bpy.context.view_layer.objects.active
+cylinder.name = cylinder_name
 
 # Create the monkey with rotation first (at default location)
 monkey_rotation = (-0.600393, 0, 0)
 bpy.ops.mesh.primitive_monkey_add(rotation=monkey_rotation)
-monkey = bpy.context.active_object
+monkey = bpy.context.view_layer.objects.active
+monkey.name = monkey_name
 
 # Calculate the perfect position so the monkey is just above the cylinder
 cylinder_top = get_top(cylinder)
@@ -45,3 +53,11 @@ monkey.location.z = cylinder_top - monkey_bottom
 
 # Display the monkey's bounds
 monkey.show_bounds = True
+
+# Deselect all objects
+bpy.ops.object.select_all(action="DESELECT")
+
+# Loop through objects and add Subdivision Surface modifier
+for obj in [cube, cylinder, monkey]:
+    bpy.context.view_layer.objects.active = obj
+    bpy.ops.object.modifier_add(type="SUBSURF")
