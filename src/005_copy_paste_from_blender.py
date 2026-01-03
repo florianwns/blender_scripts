@@ -17,6 +17,10 @@ def get_bottom(obj):
     return min((matrix @ v.co).z for v in obj.data.vertices)
 
 
+# Clear the scene
+bpy.ops.object.select_all(action="SELECT")
+bpy.ops.object.delete()
+
 # Create the cube
 bpy.ops.mesh.primitive_cube_add(location=(0, 0, 1))
 cube = bpy.context.active_object
