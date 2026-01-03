@@ -59,5 +59,12 @@ bpy.ops.object.select_all(action="DESELECT")
 
 # Loop through objects and add Subdivision Surface modifier
 for obj in [cube, cylinder, monkey]:
+    # Select objects for the subsequent scaling, excluding the cylinder
+    if obj != cylinder:
+        obj.select_set(True)
+
     bpy.context.view_layer.objects.active = obj
     bpy.ops.object.modifier_add(type="SUBSURF")
+
+# Scale all selected objects by 2
+bpy.ops.transform.resize(value=(2, 2, 2))
